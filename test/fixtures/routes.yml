@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver: one
+  province_from: MyString
+  city_from: MyString
+  province_to: MyString
+  city_to: MyString
+
+two:
+  driver: two
+  province_from: MyString
+  city_from: MyString
+  province_to: MyString
+  city_to: MyString

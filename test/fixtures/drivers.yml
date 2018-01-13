@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  company_name: MyString
+  cell_phone: MyString
+  phone: MyString
+  website: MyString
+  address: MyString
+  number_of_trucks: 1
+  non_runners: false
+
+two:
+  name: MyString
+  company_name: MyString
+  cell_phone: MyString
+  phone: MyString
+  website: MyString
+  address: MyString
+  number_of_trucks: 1
+  non_runners: false

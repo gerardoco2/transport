@@ -1,0 +1,92 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @driver.name %>
+</p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @driver.company_name %>
+</p>
+
+<p>
+  <strong>Cell phone:</strong>
+  <%= @driver.cell_phone %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @driver.phone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @driver.website %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @driver.address %>
+</p>
+
+<p>
+  <strong>Number of trucks:</strong>
+  <%= @driver.number_of_trucks %>
+</p>
+
+<p>
+  <strong>Non runners:</strong>
+  <%= @driver.non_runners %>
+</p>
+
+<hr>
+  Routes covered by <%= @driver.name %>
+<hr>
+<div>
+  <%= link_to 'add a new Route', new_driver_route_path(@driver)%>
+</div>
+
+<table>
+  <thead>
+    <th colspan="">from</th>
+    <th colspan="">To</th>
+    <th colspan="2">Options</th>
+
+  </thead>
+  <tbody>
+    <% @routes.each do |route| %>
+    <tr>
+      <td><%= route.city_from %>,<%= route.province_from %></td>
+      <td><%= route.city_to %>,<%= route.province_to %></td>
+      <td><%= link_to 'Edit', edit_driver_route_path(@driver.id, route.id)  %></td>
+      <td><%= link_to 'Destroy', driver_route_path(@driver.id, route.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>    
+    <% end %>    
+  </tbody>
+</table>
+
+<br>
+  
+
+
+<%= link_to 'Edit', edit_driver_path(@driver) %> |
+<%= link_to 'Back', drivers_path %>

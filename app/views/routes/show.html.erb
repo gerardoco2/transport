@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @route.driver %>
+</p>
+
+<p>
+  <strong>Province from:</strong>
+  <%= @route.province_from %>
+</p>
+
+<p>
+  <strong>City from:</strong>
+  <%= @route.city_from %>
+</p>
+
+<p>
+  <strong>Province to:</strong>
+  <%= @route.province_to %>
+</p>
+
+<p>
+  <strong>City to:</strong>
+  <%= @route.city_to %>
+</p>
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>
