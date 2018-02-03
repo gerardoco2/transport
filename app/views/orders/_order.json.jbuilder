@@ -1,0 +1,2 @@
+json.extract! order, :id, :customer_id, :driver_id, :service_type_id, :transport_type_id, :reservation, :direction, :pickup_address, :pickup_contact, :delivery_address, :delivery_contact, :transit_time, :booking_deposit, :balance_on_delivery, :grand_total, :tax, :year_make_model, :color, :vin, :plate, :condition, :estimated_pickup_date, :driver_pay, :security_question, :security_password, :shipping_from_province, :shipping_from_city, :shipping_to_province, :shipping_to_city, :notes, :no_runner, :created_at, :updated_at
+json.url order_url(order, format: :json)

@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
   
+  
+  
+  resources :provinces do
+    resources :cities, except: [:index]
+  end
+
+
+
+  resources :transport_types
+  resources :service_types
+  resources :customers do 
+  	resources :orders, except: [:index]
+  end
+
+
   resources :drivers do 
   	resources :routes, except: [:index]
   end

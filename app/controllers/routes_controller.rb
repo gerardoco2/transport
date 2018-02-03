@@ -16,6 +16,7 @@ class RoutesController < ApplicationController
   # GET /routes/new
   def new
     @route = Route.new
+    @provinces = Province.all
   end
 
   # GET /routes/1/edit

@@ -1,0 +1,169 @@
+<%= form_for [@customer, @order] do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  <div class="field">
+    <%= form.label :driver_id %>
+    <%= form.text_field :driver_id, id: :order_driver_id %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :driver_id %>
+    <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :service_type_id %>
+    <%= collection_select( :order, :service_type_id, ServiceType.all, :id, :name, {:include_blank => true})  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transport_type_id %>
+    <%= collection_select(:order, :transport_type_id, TransportType.all, :id, :name, {:include_blank => true} )%>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :reservation %>
+    <%= form.text_field :reservation, id: :order_reservation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direction %>
+    <%= form.text_field :direction, id: :order_direction %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pickup_address %>
+    <%= form.text_field :pickup_address, id: :order_pickup_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pickup_contact %>
+    <%= form.text_field :pickup_contact, id: :order_pickup_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :delivery_address %>
+    <%= form.text_field :delivery_address, id: :order_delivery_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :delivery_contact %>
+    <%= form.text_field :delivery_contact, id: :order_delivery_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transit_time %>
+    <%= form.text_field :transit_time, id: :order_transit_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :booking_deposit %>
+    <%= form.text_field :booking_deposit, id: :order_booking_deposit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :balance_on_delivery %>
+    <%= form.text_field :balance_on_delivery, id: :order_balance_on_delivery %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grand_total %>
+    <%= form.text_field :grand_total, id: :order_grand_total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax %>
+    <%= form.text_field :tax, id: :order_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year_make_model %>
+    <%= form.text_field :year_make_model, id: :order_year_make_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color, id: :order_color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vin %>
+    <%= form.text_field :vin, id: :order_vin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plate %>
+    <%= form.text_field :plate, id: :order_plate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :condition %>
+    <%= form.text_field :condition, id: :order_condition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estimated_pickup_date %>
+    <%= form.text_field :estimated_pickup_date, id: :order_estimated_pickup_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :driver_pay %>
+    <%= form.text_field :driver_pay, id: :order_driver_pay %>
+  </div>
+
+  <div class="field">
+    <%= form.label :security_question %>
+    <%= form.text_field :security_question, id: :order_security_question %>
+  </div>
+
+  <div class="field">
+    <%= form.label :security_password %>
+    <%= form.text_field :security_password, id: :order_security_password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shipping_from_province %>
+    <%= form.text_field :shipping_from_province, id: :order_shipping_from_province %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shipping_from_city %>
+    <%= form.text_field :shipping_from_city, id: :order_shipping_from_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shipping_to_province %>
+    <%= form.text_field :shipping_to_province, id: :order_shipping_to_province %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shipping_to_city %>
+    <%= form.text_field :shipping_to_city, id: :order_shipping_to_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :order_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_runner %>
+    <%= form.check_box :no_runner, id: :order_no_runner %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

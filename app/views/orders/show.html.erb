@@ -1,0 +1,493 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @order.customer.name %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @order.driver.name %>
+</p>
+
+<p>
+  <strong>Service type:</strong>
+  <%= @order.service_type %>
+</p>
+
+<p>
+  <strong>Transport type:</strong>
+  <%= @order.transport_type %>
+</p>
+
+<p>
+  <strong>Reservation:</strong>
+  <%= @order.reservation %>
+</p>
+
+<p>
+  <strong>Direction:</strong>
+  <%= @order.direction %>
+</p>
+
+<p>
+  <strong>Pickup address:</strong>
+  <%= @order.pickup_address %>
+</p>
+
+<p>
+  <strong>Pickup contact:</strong>
+  <%= @order.pickup_contact %>
+</p>
+
+<p>
+  <strong>Delivery address:</strong>
+  <%= @order.delivery_address %>
+</p>
+
+<p>
+  <strong>Delivery contact:</strong>
+  <%= @order.delivery_contact %>
+</p>
+
+<p>
+  <strong>Transit time:</strong>
+  <%= @order.transit_time %>
+</p>
+
+<p>
+  <strong>Booking deposit:</strong>
+  <%= @order.booking_deposit %>
+</p>
+
+<p>
+  <strong>Balance on delivery:</strong>
+  <%= @order.balance_on_delivery %>
+</p>
+
+<p>
+  <strong>Grand total:</strong>
+  <%= @order.grand_total %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @order.tax %>
+</p>
+
+<p>
+  <strong>Year make model:</strong>
+  <%= @order.year_make_model %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @order.color %>
+</p>
+
+<p>
+  <strong>Vin:</strong>
+  <%= @order.vin %>
+</p>
+
+<p>
+  <strong>Plate:</strong>
+  <%= @order.plate %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @order.condition %>
+</p>
+
+<p>
+  <strong>Estimated pickup date:</strong>
+  <%= @order.estimated_pickup_date %>
+</p>
+
+<p>
+  <strong>Driver pay:</strong>
+  <%= @order.driver_pay %>
+</p>
+
+<p>
+  <strong>Security question:</strong>
+  <%= @order.security_question %>
+</p>
+
+<p>
+  <strong>Security password:</strong>
+  <%= @order.security_password %>
+</p>
+
+<p>
+  <strong>Shipping from province:</strong>
+  <%= @order.shipping_from_province %>
+</p>
+
+<p>
+  <strong>Shipping from city:</strong>
+  <%= @order.shipping_from_city %>
+</p>
+
+<p>
+  <strong>Shipping to province:</strong>
+  <%= @order.shipping_to_province %>
+</p>
+
+<p>
+  <strong>Shipping to city:</strong>
+  <%= @order.shipping_to_city %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @order.notes %>
+</p>
+
+<p>
+  <strong>No runner:</strong>
+  <%= @order.no_runner %>
+</p>
+
+
+<p>
+  Auto Transport # <%= @order.reservation %> - PLEASE PRINT THIS EMAIL - PLEASE REVIEW THE TERMS AND CONDITIONS. NO SIGNATURE REQUIRED. BY MAKING DEPOSIT YOU AGREE TO TERMS OF SERVICE.
+</p>
+
+
+<p>Dear <%= @order.customer.name %> <%= @order.customer.lastname %>,</p>
+
+<p>
+  Please reply to this email and confirm that you agree with these terms and conditions. (Ex. “I YOUR NAME agree to the terms and conditions.”)
+</p>
+
+
+<p>
+  Provide the following info along with your confirmation.
+</p>
+<div>
+  <p>
+    PICKUP ADDRESS:    
+  </p>
+  <p>
+   <%= @order.pickup_address %> , <%= @order.shipping_from_province %> ,<%= @order.shipping_from_city %> . <br>
+    RFH WILL ASSIGN THE NEAREST TRUCK STOP OR COMMERCIAL PARKING LOT FOR LOADING. AT THE DRIVERS DISCRETION. TRAFFIC AND WEATHER INFLUENCE THE DRIVERS DECISION. MUST BE EASILY ACCESSIBLE. THE ASSIGNED OWNER OPERATOR WILL CHOOSE THE MEET LOCATION WHEN A FULL LOAD IS BOOKED AND THEY PLAN LOGISTICS. THE DRIVER WILL INFORM YOU OF THE LOCATION MEET POINT BEFORE THE TRUCK DEPARTS.    
+  </p>
+</div>
+
+
+<div>
+  <p>DELIVERY ADDRESS:</p>
+  <p> 5702 Louise Way, Sechelt, British Columbia, V0N 3A7. <br>
+      RFH WILL ASSIGN THE NEAREST TRUCK STOP OR COMMERCIAL PARKING LOT FOR LOADING. AT THE DRIVERS DISCRETION. TRAFFIC AND WEATHER INFLUENCE THE DRIVERS DECISION. MUST BE EASILY ACCESSIBLE. THE ASSIGNED OWNER OPERATOR WILL CHOOSE THE MEET LOCATION WHEN A FULL LOAD IS BOOKED AND THEY PLAN LOGISTICS. THE DRIVER WILL INFORM YOU OF THE LOCATION MEET POINT BEFORE THE TRUCK DEPARTS.
+  </p>
+</div>
+
+
+
+<div class="vin">
+  <p>VIN:
+     <% unless @order.vin.blank? %> 
+        <%= @order.vin %>
+    <% else %>
+        PLEASE REPLY WITH INFO
+    <% end %>
+  </p>
+</div>
+
+<div class="vehicle">
+  <p>
+    VEHICLE:
+    <% if @order.year_make_model %>
+      <%= @order.year_make_model %>
+    <% else %> 
+      PLEASE REPLY WITH INFO
+    <% end %>
+  </p>
+</div>
+
+
+<div>
+  <p>RUNNING / NON-RUNNING: <%= @order.condition %> 
+  </p>
+</div>
+
+<div>
+  <p>COLOR:
+     <% if @order.color %>
+       <%= @order.color %>
+     <% else %>
+       PLEASE REPLY WITH INFO
+     <% end %>
+ </p>
+</div>
+
+<div>
+  <p>
+    PLATE: 
+    <% unless @order.plate.blank? %>
+      <%= @order.plate %>
+    <% else %>
+      PLEASE REPLY WITH INFO  
+    <% end %>
+    
+  </p>
+</div>
+
+<div>
+  <p> Who to call for Pickup? :
+  <% if @order.pickup_contact %>
+   <%= @order.pickup_contact  %> 
+  <% else %>
+    PLEASE REPLY WITH INFO : NAME / 555-555-5555
+  <% end %>
+  </p>
+</div>
+
+<div>
+  <p>Who to call for Delivery? 
+  <% if @order.delivery_contact %>
+   <%= @order.delivery_contact  %> 
+  <% else %>
+    PLEASE REPLY WITH INFO : NAME / 555-555-5555
+  <% end %>
+  </p>
+</div>
+
+<div>
+  <p> Terms And Conditions:</p>
+</div>
+
+<div>
+  <p> Service agreed to be performed for the sum of $ <%= @order.grand_total %> CAD.</p>
+</div>
+
+<div>
+  <p>Price includes all fees, tax, insurance, fuels, no hidden charges.</p>
+</div>
+
+<div>
+  <p>
+    Service provided: Fully-Insured <%= @order.transport_type.name %> SHIPPING, <%= @order.service_type.name %> AUTO TRANSPORT    
+  </p>
+</div>
+
+<div>
+  <p>
+    The estimated date of pickup is: 1 - 3 weeks from booking. Once loaded on the truck delivery will take 1-3 days.    
+  </p>
+</div>
+<div>
+  <p>
+    CUSTOMER MAY BE CALLED EARLY or LATER THAN STATED DATE FOR TRANSPORT    
+  </p>
+</div>
+
+<div>
+  <p>
+    SEE PAYMENT TERMS AT THE BOTTOM OF THIS SERVICE AGREEMENT    
+  </p>
+</div>
+
+<div>
+    <p> SHIPPING AGREEMENT - REQUIRED TO RECEIVE SERVICES </p> 
+    <p> This agreement is between Customer, and JRIMS INC. (RED FOOT HAULERS), </p>
+    
+    <p> Initial Disclosure: Red Foot Haulers (JRIMS INC.) requires you the customer to read and agree to this shipping process before the transport occurs.
+    WARNING: Failure to read this legally binding contract may cause the customer monetary loss due to improper planning. If you do not read this shipping process, you will not be able to properly plan for our services. It is your responsibility to READ THIS AGREEMENT BEFORE BOOKING.</p>
+    
+    <p>Full Load Requirement: Customers only booking an order to ship one vehicle with Red Foot Haulers, is only placing 1/10th to 1/20th of the “full load” requirement before departure and pickups occur. Customer will be assigned to a 5, 7, or 10 car transport truck and trailer. This number depends on the size of your assigned truck and trailer, and which one’s available for your vehicle. Long distance car transport is not like ordering a tow, flatbed truck, or shuttle service.</p>
+    
+    <p>Industry Standards & Practices: Multi-car Haulers, depending on size, can ship anything between 5-10 vehicles at one time. When shipping vehicles on a car transport truck, there are cars from different customers. These customers are all over Canada, needing transport to many different locations.</p>
+</div>
+
+
+<div>
+  <p>
+    Load & Reverse Load: Forward and Reverse Loads for the transport truck must be booked both ways. All customers must be ready and waiting on standby for pickup and drop off. . A “ Forward Load”, is when a transport truck delivers freight from point A to point B completely full(no empty space). On the return trip, from point B to point A, having freight is called a back haul, or “Reverse Load”.    
+  </p>
+</div>
+
+<div>
+  <p>
+    Scheduling: All shipping times are only estimates and can change at any time due to many factors beyond Red Foot Haulers and the assigned trucks control. Shipping estimates given over the phone and email are subject to change at any time. Customers are responsible for preparing in the event a delay occurs.
+  </p>
+</div>
+
+<div>
+  <p>
+    Change of Transport Schedule: Example only: When a customer booked one vehicle to be transported, with a 5 car hauler truck/trailer, the order only 1/10th of the full load. This means 5 customers will book east (AB TO ON), and 5 customers will book west (ON TO AB). Once all customers are ready and waiting for pickup, the truck will start making pickups. This is required because it’s impossible to get 9 other customers to agree to one customer’s date. When the truck is fully booked, the driver and/or Red Foot Haulers will notify the pickup/delivery contact at least 24 hours prior, and the same day of pickup/delivery. We strive to supply estimated pickup dates at booking, however due to the nature of this industry they do change. It’s the customers responsibility to prepare for any change in schedule.    
+  </p>
+</div>
+
+<div>
+  <p>
+    RED FOOT HAULERS does not guarantee pickup and delivery dates or in-transit times. All dates and assertions given over the phone and email, made by RED FOOT HAULERS and assigned Owner Operators, are best estimates made at the time the assertion was made. RED FOOT HAULERS will not honor any auto rental accrual by the Owner/Shipper under any circumstances. Anytime during the pickup, delivery, or transport, delays can happen. These delays are beyond Red Foot Haulers control or influence. Customer agrees not to hold Red Foot Haulers Liable for delays of any kind.    
+  </p>
+</div>
+
+<div>
+  <p>
+    Here are some examples of delays:    
+  </p>
+  <p>Examples only: Bad Weather, rain, snow, or storm can slow down, or stop transport. If you are shipping coast to coast in the winter, you are exposed to these elements. Natural Disasters, Accidents, Construction, road closures, and shut downs. Driving time, legal breaks, off time, and holidays. Industry disputes, labor shortages, Mechanical failure with a truck and/or trailer. Empty space on a transport truck on the forward or reverse route. Delays with other customers cars that are on your assigned load/truck transport.</p>  
+</div>
+
+
+<div>
+  <p>Items Needed To Transport Your Vehicle:</p>
+  <p>Once we receive your paperwork and booking deposit we can begin scheduling the transport of your vehicle. Red Foot Haulers needs 6 items to transport your vehicle  </p>
+</div>
+
+<div>
+  <ul>
+    <li>Completed Shipping Contract</li>
+    <li>Booking Deposit</li>
+    <li>Copy of Driver's License.</li>
+    <li>Copy of Insurance Policy</li>
+    <li> Copy of Registration</li>
+    <li>Copy of Keys</li>
+  </ul>
+</div>
+
+<div>
+  <p>Terms of SERVICE- JRIMS INC. (Red Foot Haulers)</p>  
+  <p>Shipping Times/Estimates: ***See Shipping Process Addendum to this contract.. </p>
+  <p>Dimensions of Vehicle and/or Freight and extra charges: All oversized vehicles (boat, trailer, RV, or car) must be declared at the time of booking. The correct dimensions of your vehicle must be stated at booking. Failure to do so by the customer will result in additional charges. The customer must declare any after-market features that are on the vehicle. This includes any modifications to the exterior. Failure to do so may incur additional charges or fees. </p>
+</div>
+
+<div>
+  <p>Booking Deposits: The customer understands and agrees that deposits for transport are non refundable, even in the event of a delay. In the event Red Foot Haulers approves refunds for any payments made by Shipper, before any reimbursements, the following charges shall be assessed: A $400.00 cancellation fee. </p>
+</div>
+
+<div>
+  <p> Personal Items in the vehicle during Transport: No personal property may be left in the vehicle (boat, trailer, RV, or car) without authorization from Red Foot Haulers prior to booking. At the approval of Red Foot Haulers and Assigned owner operator, all personal items that are left in the vehicle (boat, trailer, RV, or car) are shipped under the owner’s risk as RED FOOT HAULERS does not assume any liability for the damage of loss of personal items. </p>
+</div>
+
+
+<div>
+  <p>Contraband: Customer agrees that the carrier may confiscate and/or dispose of any illegal contraband. JRIMS INC.(Red Foot Haulers), is not liable for any illegal contraband, and will cooperate with all authorities in regards to any illegal activity. </p>
+</div>
+<div>
+  <p>Freight Bill and any additional freight bills: The customer names on this contract is the appointed agent for the purposes of releasing vehicle, approving charges, making payment, accepting delivery, and releasing RED FOOT HAULERS and assigned owner operator/carrier from any and all claims upon acceptance of delivery. All Bills associated with the shipping of the customer's property, will be due before the property is released to the customer.</p>
+</div>
+<div>
+  <p>Payment Terms: After the initial booking deposit is paid, unless otherwise stated, the customer shall pay the assigned owner operator/carrier directly for service. </p>
+</div>
+<div>
+  <p> Claims and Insurance: Any claim or conflict arising from or relating to this Agreement or the performance, or breach thereof shall be subject to the jurisdiction of where your assigned carrier/owner operator is incorporated. Your assigned carrier accepts all liability for any dispute, including damage / insurance matters. This information can be provided upon request when your order has been assigned a carrier for transport. Customer agrees not to hold JRIMS INC.(RED FOOT HAULERS), liable in any way. Any claim for damages arising out of the use of a truck to deliver customers vehicle must be taken up directly with the assigned transport carrier / owner operator. RED FOOT HAULERS will provide the name, phone number, and all company information of the transport carrier used for transport, and will assist customer in providing any other necessary information, should a claim arise. In the event any insurance claim is denied by your assigned owner operator, you agree to use your own insurance policy in regards to any claim. The assigned owner operators insurance only covers: the vehicle from accidents and/or driver’s negligence to the vehicle when they are loading, unloading, or in transit. Your vehicle is insured under the transport carrier’s insurance under their insurance/s terms and conditions. You the customer agree to carry your own insurance for anything not covered by the owner operators transport insurance. It is the customer's responsibility to make sure that all vehicle(s) must be insured either independently by the customer, or through a garage policy before shiping occurs. If you are unable to file or settle a claim with your assigned owner/operator, the customer is to file a claim through their own insurance company.
+  </p>
+</div>
+<div>
+  <p>
+    Authority: Customer agrees to allow JRIMS INC., doing business as RED FOOT HAULERS, assign your shipping order to assigned to an owner operator that carriers active insurance and proper licensing. Said owner operator will route vehicles from origin to destination, such route to be in the sole discretion of the transport carrier. RED FOOT HAULERS does not guarantee and shall not be responsible for the performance of, or any act or omission of the owner operator. The owner operator's insurance company shall carry full liability when it comes to any damages that derive from transport. The customer is responsible to ensure that the vehicle being shipped is properly prepared to be transported.    
+  </p>
+</div>
+<div>
+  <p>
+    Door-to-Door: This service is at the driver’s discretion and is contingent upon the truck being able to safely load/unload at the street addresses provided. If the driver feels it would be unsafe for their personal safety or the truck is physically unable to maneuver into place we will make alternative arrangements to meet at a a truck stop off the main Highway. (Some examples include: cul de sac, dead end, road too narrow, low-hanging power lines / trees, pedestrians, oncoming traffic, truck cannot fit, etc.)    
+  </p>
+</div>
+
+
+<div>
+  <p>Additional Fees May Apply, In the Event of : </p>
+  <p>At the drivers discretion they can charge up to $75.00 per hour after waiting 15 minutes for waiting for payment to arrive. (due at pickup and/or delivery) <br>
+    In the event it takes more than 15 minutes to load the vehicle at pickup address, or unload the vehicle at the delivery address, at the driver's discretion, may charge up to $75.00 per hour. <br>
+    In the event the vehicle does not run, or start, and it’s not disclosed on this service order, the customer will be charged an additional $200.00-$500.00. The price will range depending on the difficulty of loading and unloading the vehicle, at the discretion of the drivers and Red Foot Haulers Inc.
+  </p>
+
+  <p>
+    Running Vehicles – please ensure the vehicle starts prior to the carrier’s arrival (battery is not dead, etc.) as there will be an extra charges if driver needs to boost or install new battery.
+  </p>
+
+  <p>
+    Non-Running Vehicles- vehicle must able to roll forward(cannot be not on blocks/tires are flat, etc). Any information not detailed in this document can/will result in extra charges.
+    Ensure proper access to the running and/or non-running vehicles.
+  </p>
+
+</div>
+
+<div>
+  <p>
+    4. NON PAYMENT FOR TRANSPORT WILL RESULT NO DELIVERY, REPOSSESSION OF VEHICLE, LEGAL FEES, COURT FEES, STORAGE FEES, AND A MECHANICS LIEN AGAINST YOUR VEHICLE.    
+  </p>
+  <div>
+    <ul style="list-style-type: square;">
+      <li>Pay booking deposit to RED FOOT HAULERS (deposits@redfoothaulers.ca).</li>
+      <li>Any balance remaining will be paid to your assigned carriers on pickup and/or on delivery.</li>
+      <li>Assigned carrier's information will be provided after contract and deposit have been received.</li>
+    </ul>
+  </div>
+
+</div>
+<div>
+  <p>
+  NO SIGNATURE REQUIRED: By you the customer making a payment to initiate this order with Red Foot Haulers (JRIMS INC.), you understand you are entering into this legally binding contract.  
+  </p>   
+</div>
+
+<div>
+  <p>
+    GRAND TOTAL $990.00 for Services described above  
+  </p>  
+</div>
+
+<div>
+  <p>Payment Terms: "PRIVATE CUSTOMER"(NON-DEALERSHIP)</p>
+</div>
+
+<div>
+  <p>
+    <span> DEPOSIT REQUIRED at booking $150,00 CAD </span>     
+  </p>
+</div>
+<div>
+  <p>
+
+    INTERAC / EMAIL TRANSFER: deposits@redfoothaulers.ca <br>
+    SET QUESTION as: Where? <br>
+    SET PASSWORD as: Alberta123abc <br>
+    SET NOTES as your Reservation #: 132301122018 in the Notes section <br>
+  </p>
+</div>
+<div>
+  <p> It is required that you read the shipping process, by clicking the link below. By making payment you agree you have read the terms and conditions, and the shipping process. Both are legally binding when you complete your order online. No signature required. (click on this link and read before you complete your order.) http://redfoothaulers.ca/shipping-process/ </p>
+</div>
+
+<div>
+  <p> PROFESSIONAL AND CUSTOMER REFERENCES AVAILABLE ON REQUEST </p>
+</div>
+
+
+<div>
+  <p>* END OF CONTRACT - PLEASE PRINT FOR YOUR RECORDS * </p>
+</div>
+
+<div>
+  <p> As soon as our office receives your reply confirmation and payment, your pickup will be scheduled. If you have any questions please let me know. </p>
+</div>
+
+
+
+<div>
+  <p>I look forward to speaking with you again shortly to schedule pickup of your vehicle. </p>
+</div>
+
+
+<div>
+  <p>
+    Regards, <br><br>
+
+    Jonathan C. <br>
+    Ryan M. <br>
+    Red Foot Haulers Inc.<br>
+    1-800-351-7009 <br>
+    info@redfoothaulers.ca <br>
+    www.redfoothaulers.ca<br>
+    
+  </p>
+</div>
+
+

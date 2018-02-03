@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @customer.lastname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Cell phone:</strong>
+  <%= @customer.cell_phone %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @customer.phone %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>
+<hr>
+  <h2>Customer's orders</h2>
+<hr>
+
+<div>
+  <%= link_to 'NEW ORDER', new_customer_order_path(@customer) %>
+</div>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Reservation Number</th>
+        <th>Vehicle</th>
+        <th>Shipping From</th>
+        <th>Shipping Destination</th>
+        <th>Driver</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.reservation, customer_order_path(@customer.id, order.id) %></td>
+          <td><%= order.year_make_model %></td>
+          <td><%= order.shipping_from_city %>,<%= order.shipping_from_province %> </td>
+          <td><%= order.shipping_to_city %>,<%= order.shipping_to_province %> </td>
+          <td><%= Driver.find(order.driver_id).name %></td>
+          <td></td>
+        </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+
+   

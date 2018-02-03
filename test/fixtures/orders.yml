@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  driver: one
+  service_type: one
+  transport_type: one
+  reservation: MyString
+  direction: MyString
+  pickup_address: MyString
+  pickup_contact: MyString
+  delivery_address: MyString
+  delivery_contact: MyString
+  transit_time: MyString
+  booking_deposit: 9.99
+  balance_on_delivery: 9.99
+  grand_total: 9.99
+  tax: 9.99
+  year_make_model: MyString
+  color: MyString
+  vin: MyString
+  plate: MyString
+  condition: MyString
+  estimated_pickup_date: MyString
+  driver_pay: 9.99
+  security_question: MyString
+  security_password: MyString
+  shipping_from_province: MyString
+  shipping_from_city: MyString
+  shipping_to_province: MyString
+  shipping_to_city: MyString
+  notes: MyText
+  no_runner: false
+
+two:
+  customer: two
+  driver: two
+  service_type: two
+  transport_type: two
+  reservation: MyString
+  direction: MyString
+  pickup_address: MyString
+  pickup_contact: MyString
+  delivery_address: MyString
+  delivery_contact: MyString
+  transit_time: MyString
+  booking_deposit: 9.99
+  balance_on_delivery: 9.99
+  grand_total: 9.99
+  tax: 9.99
+  year_make_model: MyString
+  color: MyString
+  vin: MyString
+  plate: MyString
+  condition: MyString
+  estimated_pickup_date: MyString
+  driver_pay: 9.99
+  security_question: MyString
+  security_password: MyString
+  shipping_from_province: MyString
+  shipping_from_city: MyString
+  shipping_to_province: MyString
+  shipping_to_city: MyString
+  notes: MyText
+  no_runner: false

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @province.name %>
+</p>
+
+<p>
+  <strong>Abbreviation:</strong>
+  <%= @province.abbreviation %>
+</p>
+
+<div>
+	<h2>Cities</h2>
+<div>
+	<%= link_to 'add city', new_province_city_path(@province) %>
+
+<br>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cities.each do |city| %>
+        <tr>
+          <td><%= city.name %></td>
+        </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+
+
+<br>
+
+
+<%= link_to 'Edit', edit_province_path(@province) %> |
+<%= link_to 'Back', provinces_path %>

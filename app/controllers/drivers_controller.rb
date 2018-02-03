@@ -11,6 +11,8 @@ class DriversController < ApplicationController
   # GET /drivers/1.json
   def show
     @routes = @driver.routes.all
+    
+    @orders = @driver.orders.all
   end
 
   # GET /drivers/new

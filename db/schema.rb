@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113153337) do
+ActiveRecord::Schema.define(version: 20180116024337) do
+
+  create_table "cities", force: :cascade do |t|
+    t.integer "province_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_cities_on_province_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "lastname"
+    t.string "email"
+    t.string "cell_phone"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "drivers", force: :cascade do |t|
     t.string "name"
@@ -25,6 +43,52 @@ ActiveRecord::Schema.define(version: 20180113153337) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "driver_id"
+    t.integer "service_type_id"
+    t.integer "transport_type_id"
+    t.string "reservation"
+    t.string "direction"
+    t.string "pickup_address"
+    t.string "pickup_contact"
+    t.string "delivery_address"
+    t.string "delivery_contact"
+    t.string "transit_time"
+    t.decimal "booking_deposit"
+    t.decimal "balance_on_delivery"
+    t.decimal "grand_total"
+    t.decimal "tax"
+    t.string "year_make_model"
+    t.string "color"
+    t.string "vin"
+    t.string "plate"
+    t.string "condition"
+    t.string "estimated_pickup_date"
+    t.decimal "driver_pay"
+    t.string "security_question"
+    t.string "security_password"
+    t.string "shipping_from_province"
+    t.string "shipping_from_city"
+    t.string "shipping_to_province"
+    t.string "shipping_to_city"
+    t.text "notes"
+    t.boolean "no_runner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["driver_id"], name: "index_orders_on_driver_id"
+    t.index ["service_type_id"], name: "index_orders_on_service_type_id"
+    t.index ["transport_type_id"], name: "index_orders_on_transport_type_id"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.string "abbreviation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "routes", force: :cascade do |t|
     t.integer "driver_id"
     t.string "province_from"
@@ -34,6 +98,22 @@ ActiveRecord::Schema.define(version: 20180113153337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_routes_on_driver_id"
+  end
+
+  create_table "service_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transport_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

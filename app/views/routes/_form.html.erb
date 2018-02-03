@@ -18,6 +18,11 @@
   </div>
 
   <div class="field">
+    
+    <%= collection_select(:route, :province_, Province.all, :id, :name, {:include_blank => true} ) %>
+  </div>
+
+  <div class="field">
     <%= form.label :city_from %>
     <%= form.text_field :city_from, id: :route_city_from %>
   </div>
