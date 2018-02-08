@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     @order.customer_id = @customer.id
     respond_to do |format|
       if @order.save
+        send_sms(@customer.cell_phone)
         OrderMailer.new_contract(@order).deliver_later
         format.html { redirect_to customer_path(@customer.id), notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
