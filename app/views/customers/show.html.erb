@@ -1,65 +1,84 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @customer.lastname %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
 
-<p>
-  <strong>Cell phone:</strong>
-  <%= @customer.cell_phone %>
-</p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
+<div class="row">
+  <div class="col-lg-4">
+    <div class="widget lazur-bg p-xl">
+      <h2  class="font-bold no-margins"><%= @customer.name %> <%= @customer.lastname %></h2>
+      <ul class="list-unstyled m-t-md">
+        <li><strong>Email: </strong><%= @customer.email %> </li>
+        <li><span class="fa fa-mobile">  <%= @customer.cell_phone %></span></li>
+        <li><span class="fa fa-phone m-r-xs">  <%= @customer.phone %></span></li>
+      </ul>
+    </div> 
+  </div>
+
+
+  <div class="col-lg-6 col-lg-offset-2" style="margin-top: 5px;"  >
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5> Actions </h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-sm-12 col-md-4">
+              <%= link_to "New Quote", @customer, :class=>"btn btn-lg btn-primary btn-block link-to-white"%>    
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <%= link_to "New Contract / Order", new_customer_order_path(@customer), :class=>"btn btn-lg btn-primary btn-block link-to-white"%></div>
+            <div class="col-sm-12 col-md-4">
+              <%= link_to "Invoice", @customer, :class=>"btn btn-lg btn-primary btn-block link-to-white"%>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="ibox-content">
+      <h2>Customer's orders</h2>
+      <hr>
+        <div>
+          <%= link_to 'NEW ORDER', new_customer_order_path(@customer) %>
+        </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Reservation Number</th>
+                <th>Vehicle</th>
+                <th>Shipping From</th>
+                <th>Shipping Destination</th>
+                <th>Driver</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @orders.each do |order| %>
+                <tr>
+                  <td><%= link_to order.reservation, customer_order_path(@customer.id, order.id) %></td>
+                  <td><%= order.year_make_model %></td>
+                  <td><%= order.shipping_from_city %>,<%= order.shipping_from_province %> </td>
+                  <td><%= order.shipping_to_city %>,<%= order.shipping_to_province %> </td>
+                  <td><%= Driver.find(order.driver_id).name %></td>
+                  <td></td>
+                </tr>
+              <% end %>
+              
+            </tbody>
+          </table>           
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
 <hr>
-  <h2>Customer's orders</h2>
-<hr>
 
-<div>
-  <%= link_to 'NEW ORDER', new_customer_order_path(@customer) %>
-</div>
-
-
-  <table>
-    <thead>
-      <tr>
-        <th>Reservation Number</th>
-        <th>Vehicle</th>
-        <th>Shipping From</th>
-        <th>Shipping Destination</th>
-        <th>Driver</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= link_to order.reservation, customer_order_path(@customer.id, order.id) %></td>
-          <td><%= order.year_make_model %></td>
-          <td><%= order.shipping_from_city %>,<%= order.shipping_from_province %> </td>
-          <td><%= order.shipping_to_city %>,<%= order.shipping_to_province %> </td>
-          <td><%= Driver.find(order.driver_id).name %></td>
-          <td></td>
-        </tr>
-      <% end %>
-      
-    </tbody>
-  </table>
-
-   

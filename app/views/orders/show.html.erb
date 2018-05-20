@@ -2,7 +2,7 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @order.customer.name %>
+  <%= @order.customer.name %> <%= @order.customer.lastname %> 
 </p>
 
 <p>
@@ -12,12 +12,12 @@
 
 <p>
   <strong>Service type:</strong>
-  <%= @order.service_type %>
+  <%= @order.service_type.name %>
 </p>
 
 <p>
   <strong>Transport type:</strong>
-  <%= @order.transport_type %>
+  <%= @order.transport_type.name %>
 </p>
 
 <p>

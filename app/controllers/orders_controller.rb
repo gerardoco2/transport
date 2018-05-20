@@ -26,6 +26,11 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.reservation = Time.new.strftime("%H%M%m%d%Y")
+ 
+    tax = Float(@order.tax/100) 
+    @order.grand_total = @order.booking_deposit + @order.driver_pay * (1 + tax)
+ 
     @order.customer_id = @customer.id
     respond_to do |format|
       if @order.save
