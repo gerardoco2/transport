@@ -9,6 +9,6 @@ class OrderMailer < ApplicationMailer
     
     @order = order
 
-    mail( to: @order.customer.email, subject: "Contract PRIMERA PRUEBA", cc: "gerardocolina_20@hotmail.com" )
+    mail( to: @order.customer.email, subject: "CONTRACT FOR YOUR AUTO TRANSPORT SERVICE", cc: "gerardocolina_20@hotmail.com" )
   end
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :transport_types
   resources :service_types
+  resources :orders
   resources :customers do 
   	resources :orders, except: [:index]
   end
