@@ -1,57 +1,71 @@
-<%= form_with(model: driver, local: true) do |form| %>
-  <% if driver.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(driver.errors.count, "error") %> prohibited this driver from being saved:</h2>
 
-      <ul>
-      <% driver.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="container">
+   <div class="row">
+      <div class="ibox float-e-margins">
+          <div class="ibox-title">
+              <h5>New Driver Registration</h5>
+          </div>
+          <div class="ibox-content">
+         <%= form_with(model: driver, local: true) do |form| %>
+              <% if driver.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(driver.errors.count, "error") %> prohibited this driver from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :driver_name %>
+                  <ul>
+                  <% driver.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+                 <div class="form-group">
+                  <%= form.label :name %>
+                  <%= form.text_field :name, id: :driver_name , :class=>'form-control' %>
+                </div>
+              
+              <div class="form-group">
+                <%= form.label :company_name %>
+                <%= form.text_field :company_name, id: :driver_company_name, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :cell_phone %>
+                <%= form.text_field :cell_phone, id: :driver_cell_phone, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :phone %>
+                <%= form.text_field :phone, id: :driver_phone, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :website %>
+                <%= form.text_field :website, id: :driver_website, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :address %>
+                <%= form.text_field :address, id: :driver_address, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :number_of_trucks %>
+                <%= form.number_field :number_of_trucks, id: :driver_number_of_trucks, :class=>'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.label :non_runners %>
+                <%= form.check_box :non_runners, id: :driver_non_runners, :class=>'i-checks' %>
+              </div>
+
+              <div class="form-group">
+                <%= form.submit 'Create New Driver', :class=>'btn btn-primary'%>
+              </div>
+                 
+                  
+              <% end %>
+          </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= form.label :company_name %>
-    <%= form.text_field :company_name, id: :driver_company_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cell_phone %>
-    <%= form.text_field :cell_phone, id: :driver_cell_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :driver_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :website %>
-    <%= form.text_field :website, id: :driver_website %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :driver_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number_of_trucks %>
-    <%= form.number_field :number_of_trucks, id: :driver_number_of_trucks %>
-  </div>
-
-  <div class="field">
-    <%= form.label :non_runners %>
-    <%= form.check_box :non_runners, id: :driver_non_runners %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+   

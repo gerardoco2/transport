@@ -42,10 +42,10 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.customer %></td>
-        <td><%= order.driver %></td>
-        <td><%= order.service_type %></td>
-        <td><%= order.transport_type %></td>
+        <td><%= order.customer.name %></td>
+        <td><%= order.driver.name %></td>
+        <td><%= order.service_type.name %></td>
+        <td><%= order.transport_type.name %></td>
         <td><%= order.reservation %></td>
         <td><%= order.direction %></td>
         <td><%= order.pickup_address %></td>
