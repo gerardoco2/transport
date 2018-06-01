@@ -9,7 +9,7 @@
         <li><strong>Company Name: </strong><%= @driver.company_name %></li>
         <li><span class="fa fa-mobile">  CellPhone: <%= @driver.cell_phone %></span></li>
         <li><span class="fa fa-phone m-r-xs">  Phone: <%= @driver.phone %></span></li>
-        <li><span class="fa fa-globe m-r-xs">  Website:<%= @driver.website %></span></li>
+        <li><span class="fa fa-envelop m-r-xs">  Website:<%= @driver.email %></span></li>
         <li><span class="fa fa-map-marker m-r-xs">  Address: <%= @driver.address %></span></li>
         <li><span class="fa fa-truck m-r-xs">  Trcks: <%= @driver.number_of_trucks %></span></li>
         <li><span class="fa fa-medkit m-r-xs">  Non-Runners:  <%= @driver.non_runners %></span></li>
@@ -56,6 +56,9 @@
 
 <hr>
  <h2> <%= @driver.name %>'s Current Orders </h2>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ordersModal">
+        Request update on all orders
+  </button>
 <hr>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -101,6 +104,52 @@
       <% end %>    
     </div>
 </div>  
+
+                  
+        <div class="modal inmodal" id="ordersModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">Orders Update</h4>
+                        <small class="font-bold">You are about to ask for an update for the following orders .</small>
+                    </div>
+                    <div class="modal-body">
+                        
+                <div class="mail">
+                    <h5>Hello <%= @driver.name %> </h5>
+                    <p>Could you please give us an update on the following orders?. Please, let me know if you have picked up or delivered them already </p>
+                </div>
+
+            <% @orders.each_with_index do |order, index| %>
+                <div class="order-info">
+                    <h4> Work Order # <%= index +1 %> : </h4>
+                    <p>  ===============</p>
+                        <span class="dark"> Reservation Number: </span> <%= order.reservation %> <br>
+                        <span class="dark">Customer Name: </span> <%= order.customer.name %> <%= order.customer.lastname %><br>
+                        <span class="dark">Customer's Phone Number:</span><%= order.customer.cell_phone %> <br>
+                        <span class="dark">Vehicle: </span><%= order.year_make_model %> <br>
+                        <span class="dark">Color: </span><%= order.color %> <br>
+                        <span class="dark">Vin: </span><%= order.vin %> <br>
+                        <span class="dark">Service Type:</span> <%= order.service_type.name %> <br>
+                        <span class="dark">Shipping from: </span><%= order.pickup_address %> <br>
+                        <span class="dark">Pick up Contact: </span><%= order.pickup_contact %> <br>
+                        <span class="dark">Shipping To: </span><%= order.delivery_address%> <br>
+                        <span class="dark">Delivery Contact: </span><%= order.delivery_contact %> <br>
+                        <br><br>
+                </div>
+                
+            <% end %>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <%= link_to 'Send', update_orders_path %>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>

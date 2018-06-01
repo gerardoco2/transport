@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   	resources :routes, except: [:index]
     resources :orders, except: [:index]
   end
+
+  get 'drivers/:id/update_orders', to: 'drivers#update_orders', as: :update_orders 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
