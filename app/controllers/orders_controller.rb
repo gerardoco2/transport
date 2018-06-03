@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.reservation = Time.new.strftime("%H%M%m%d%Y")
- 
+    @order.status = "Pending / Contract sent"
     tax = Float(@order.tax/100) 
     @order.grand_total = @order.booking_deposit + @order.driver_pay * (1 + tax)
  

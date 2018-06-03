@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180601143156) do
+ActiveRecord::Schema.define(version: 20180603010057) do
 
   create_table "cities", force: :cascade do |t|
     t.integer "province_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180601143156) do
     t.boolean "no_runner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["driver_id"], name: "index_orders_on_driver_id"
     t.index ["service_type_id"], name: "index_orders_on_service_type_id"
