@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :set_customer, only: [:create, :new, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :approve, :cancel, :assign]
+  before_action :set_customer, only: [:create, :new, :edit,  :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order(created_at: :desc)
   end
 
   # GET /orders/1
@@ -46,6 +46,33 @@ class OrdersController < ApplicationController
     end
   end
 
+  def on_hold
+    @orders = Order.where(status:"Pending / Contract sent").order(created_at: :desc)
+  end
+
+  def approve
+    @order.status = "Dispatch"
+    @order.save
+  end
+
+  def cancel
+    @order.status = "Cancelled"
+    @order.save
+  end
+
+  def dispatch_room
+    @orders = Order.where(status: "Dispatch").order(created_at: :desc)
+  end
+
+  def assign
+    respond_to do |format|
+      if order.update(order_params)
+        format.js
+      end
+    end
+  end
+
+
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
@@ -53,6 +80,9 @@ class OrdersController < ApplicationController
       if @order.update(order_params)
         format.html { redirect_to customer_path(@customer.id), notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
+        if format.js 
+          puts "envia email"
+        end
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -82,6 +112,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :driver_id, :service_type_id, :transport_type_id, :reservation, :direction, :pickup_address, :pickup_contact, :delivery_address, :delivery_contact, :transit_time, :booking_deposit, :balance_on_delivery, :grand_total, :tax, :year_make_model, :color, :vin, :plate, :condition, :estimated_pickup_date, :driver_pay, :security_question, :security_password, :shipping_from_province, :shipping_from_city, :shipping_to_province, :shipping_to_city, :notes, :no_runner)
+      params.require(:order).permit(:customer_id, :driver_id, :service_type_id, :transport_type_id, :reservation, :direction, :pickup_address, :pickup_contact, :delivery_address, :delivery_contact, :transit_time, :booking_deposit, :balance_on_delivery, :grand_total, :tax, :year_make_model, :color, :vin, :plate, :condition, :estimated_pickup_date, :driver_pay, :security_question, :security_password, :shipping_from_province, :shipping_from_city, :shipping_to_province, :shipping_to_city, :notes, :no_runner, :status)
     end
 end

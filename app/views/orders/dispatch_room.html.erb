@@ -1,0 +1,173 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-8">
+    <h2>Dispatch Room</h2> 
+    <ol class="breadcrumb">
+      <li>kjsad</li>
+      <li>ada</li>
+      <li>sd</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+    <%if @orders.empty? %>
+     <div class="container">
+         <div class="wrapper wrapper-content  animated fadeInRight article">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            
+                            <div class="text-center article-title">
+                            <span class="text-muted"><i class="fa fa-clock-o"></i> <%= Time.now.to_formatted_s(:long) %></span>
+                                <h1>
+                                    There are no orders waiting to be Dispatched!
+                                </h1>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>     
+     </div>
+    <% else  %>    
+        
+        <% @orders.each do |order| %>
+        <div class="col-lg-3" id="<%= order.id %>">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right"><%= order.status.upcase %></span>
+                    <h5>Reservation # - <%= link_to order.reservation, order %></h5>
+                </div>
+                <div class="ibox-content">
+                    <h4 class="text-center">Order's Info</h4>
+                     <ul class="list-unstyled m-t-md">
+                    <li><strong> DRIVER: </strong><%= Driver.find(order.driver_id).name.upcase %></li>
+                      <li><strong> CUSTOMER: </strong><%= Customer.find(order.customer_id).name.upcase %></li>
+                      <li><span class="fa fa-mobile"> <strong>VEHICLE:</strong> <%= order.year_make_model.upcase %></span></li>
+                      <li><span class="fa fa-map-marker m-r-xs"> <STRONG> PROM :</STRONG> <%= order.shipping_from_city.upcase %>,<%= order.shipping_from_province %></span></li>
+                      <li><span class="fa fa-map-marker m-r-xs"> <strong>TO :</strong>  <%= order.shipping_to_city.upcase %>,<%= order.shipping_to_province %> </span></li>
+                    </ul>
+                
+                    <div class="row">
+                       
+                       <div class="col-md-6">
+                       	<%= link_to 'Dispatch', "",  :class=>'btn  btn-block btn-primary',:data => {:toggle => "modal", :target => "#dispatchModal"}
+                       	 %>
+                       </div>
+                       <div class="col-md-6">
+                       	 <%= link_to 'Sheet', "",  :class=>'btn  btn-block btn-success',:data => {:toggle => "modal", :target => "#sheetModal"}
+ %>
+                       </div> 
+                       
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="modal inmodal" id="dispatchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content animated ">
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-exclamation-triangle modal-icon"></i>
+                        <h4 class="modal-title"> Dispatch/assign Order</h4>
+                       
+                    <div class="modal-body">
+                                
+                        <div class="mail">
+                            <p> Please, choose from the dropdown list, the driver who is going to take this order!  </p>
+                             
+
+						    <%= form_for order, remote:true do |form| %>
+						        <% if order.errors.any? %>
+						          <div id="error_explanation">
+						            <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+						            <ul>
+						            <% order.errors.full_messages.each do |message| %>
+						              <li><%= message %></li>
+						            <% end %>
+						            </ul>
+						          </div>
+						        <% end %>
+
+						         <div class="form-group">
+						          <%= form.label :driver_id %>
+						          <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
+						         </div>
+								<%= form.hidden_field :status, :value => "Dispatched" %>
+								
+						 
+						          <%= form.submit "Dispatch" , :class=>"btn btn-primary" %>
+						        
+						     <% end %>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="modal inmodal" id="sheetModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content animated ">
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-exclamation-triangle modal-icon"></i>
+                        <h4 class="modal-title"> Dispatch Sheet</h4>
+                       
+                    <div class="modal-body">
+                                
+                        <div class="mail">
+                            <p>Hi, <br> There is a new order <span style="font-weight: 700; background-color: yellow;"> FROM <%= order.pickup_address %> TO <%= order.delivery_address %> </span><br> You will be paid : <span style="font-weight: 700; background-color: yellow;"> $ <%= order.driver_pay %>  CAD </span>  <br> If you want to takethis orders pleas Reply <span style="background-color: yellow;">YES</span> to this message or click on the following link to accept it inmediately.
+
+                            	<div>
+								<%= form_for order, remote:true do |form| %>
+						        <% if order.errors.any? %>
+						          <div id="error_explanation">
+						            <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+						            <ul>
+						            <% order.errors.full_messages.each do |message| %>
+						              <li><%= message %></li>
+						            <% end %>
+						            </ul>
+						          </div>
+						        <% end %>
+
+						         <div class="form-group">
+						          <%= form.label :driver_id %>
+						          <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
+						         </div>
+								<%= form.hidden_field :status, :value => "Dispatched" %>
+								
+						 
+						          <%= form.submit "Send dispatch sheet" , :class=>"btn btn-primay" %>
+						        
+						     <% end %>                            		
+                            </div>
+						   
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-w-m btn-white" data-dismiss="modal">No</button>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <% end %>  
+    <% end  %>
+
+      
+    </div>
+</div> 
+

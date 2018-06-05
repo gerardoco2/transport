@@ -26,35 +26,58 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    
                 </div>
             </li>
             <li class="">
                 <a href=""><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Profile</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse ">
-                    <li class=""><%= link_to "Orders" %></li>
+                    <li class=""><%= link_to "My Profile" %></li>
                     <li ><%= link_to "Recent Orders" %></li>
-                    <li class=""><%= link_to "New Order(Contract)" %></li>
-                    <li class=""><%= link_to "Dispatch"%></li>
+                    
                 </ul>
             </li>
             <li class="">
-      
+                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Customers </span><span class="label label-warning pull-right"> <%= Customer.count %></span></a>
+                <ul class="nav nav-second-level collapse ">
+                    <li class=""><%= link_to "List", customers_path %></li>
+                    <li ><%= link_to "Registration", new_customer_path %></li>
+                    
+                </ul>
+            </li>
+            <li class="">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="nav.graphs">Orders</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse ">
+                    <li class=""><%= link_to "List", orders_path %></li>
+                    
+                    <li class=""><%= link_to "Dispatch Room", dispatch_room_path %></li>
+                </ul>
+            </li>
+
+               <li class="">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="nav.graphs">Rooms</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse ">
+                    <li class=""><%= link_to "Waiting Room", on_hold_path %></li>
+                    
+                    <li class=""><%= link_to "Dispatch Room", dispatch_room_path %></li>
+                </ul>
             </li>
             <li class="">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="nav.graphs">Drivers</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse ">
-                    <li class=""><%= link_to "New Driver" %></li>
-                    <li ><%= link_to "Drivers List" %></li>
+                    <li class=""><%= link_to "Drivers List", drivers_path %></li>
+                    
                     <li class=""><%= link_to "Drivers' Orders" %></li>
                 </ul>
             </li>
-            <li class="">
-                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Customer </span><span class="label label-warning pull-right">16/24</span></a>
+            
+         
+                 <li class="">
+                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Statistics </span>
                 <ul class="nav nav-second-level collapse ">
-                    <li class=""><%= link_to "Registration" %></li>
-                    <li ><%= link_to "Recently Added" %></li>
-                    <li class=""><%= link_to "New Quote" %></li>
+                    <li class="">Sells Reports</li>
+                    <li class="">Customers Reports</li>
+                    <li class=""> Reports</li>
                 </ul>
             </li>
          
