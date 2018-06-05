@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   
   
+  root to: 'pages#main'
+
   resources :provinces do
     resources :cities, except: [:index]
   end
