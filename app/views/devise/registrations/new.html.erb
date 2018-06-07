@@ -1,0 +1,44 @@
+
+
+
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">RFH</h1>
+
+            </div>
+            <h3>Welcome to Red Foot Haulers</h3>
+           
+            <p>Login in. To see it in action.</p>
+           
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="form-group">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" , :class=>"form-control"%>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, autocomplete: "off", :class=>"form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password_confirmation %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "off" , :class=>"form-control"%>
+                </div>
+
+                <div class="form-group">
+                  <%= f.submit "Sign up", :class=>"btn btn-primary btn-block" %>
+                </div>
+              <% end %>
+
+            <p class="m-t"> <small>Red Red Foot Haulers </small> </p>
+        </div>
+    </div>
