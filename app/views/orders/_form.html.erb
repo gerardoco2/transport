@@ -19,19 +19,19 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col-md-2">
+          <!--<div class="col-md-2">
             <div class="form-group">
               <%= form.label :driver_id %>
               <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
             </div>
-          </div>
-          <div class="col-md-2">
+          </div>-->
+          <div class="col-md-3">
             <div class="form-group">
               <%= form.label :service_type_id %>
               <%= collection_select( :order, :service_type_id, ServiceType.all, :id, :name, {:include_blank => true}, {:class=>"form-control"})%>
             </div>    
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
               <div class="form-group">
                 <%= form.label :transport_type_id %>
                 <%= collection_select(:order, :transport_type_id, TransportType.all, :id, :name, {:include_blank => true} , {:class=>"form-control"}) %>

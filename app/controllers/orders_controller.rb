@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     @order.status = "Pending / Contract sent"
     @order.balance_on_delivery = @order.driver_pay
     tax = Float(@order.tax/100) 
-    @order.grand_total = @order.booking_deposit + @order.driver_pay * (1 + tax)
+    @order.grand_total = @order.booking_deposit + (@order.driver_pay * (1 + tax))
  
     @order.customer_id = @customer.id
     respond_to do |format|
