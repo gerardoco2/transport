@@ -61,11 +61,17 @@
                   <td><%= order.year_make_model %></td>
                   <td><%= order.shipping_from_city %>,<%= order.shipping_from_province %> </td>
                   <td><%= order.shipping_to_city %>,<%= order.shipping_to_province %> </td>
-                  <td><%= Driver.find(order.driver_id).name %></td>
-                  <td></td>
+                  <td><% if order.driver_id  %> 
+                    
+                        <%= Driver.find(order.driver_id).name %>
+                      <% else %>
+                        <%= "not assigned yet" %>
+                      <% end %>
+                    </td>
+                  <td><%= order.status %></td>
                 </tr>
               <% end %>
-              
+          
             </tbody>
           </table>           
       </div>

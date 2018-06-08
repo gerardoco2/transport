@@ -35,7 +35,13 @@
                 <div class="ibox-content">
                     <h4>Order's Info</h4>
                      <ul class="list-unstyled m-t-md">
-                    <li><strong> DRIVER: </strong><%= Driver.find(order.driver_id).name.upcase %></li>
+                    <li><strong> DRIVER: </strong><% if order.driver_id  %> 
+                    
+                        <%= Driver.find(order.driver_id).name.upcase %>
+                      <% else %>
+                        <%= "not assigned yet" %>
+                      <% end %>
+                    </li>
                       <li><strong> CUSTOMER: </strong><%= Customer.find(order.customer_id).name.upcase %></li>
                       <li><span class="fa fa-mobile"> <strong>VEHICLE:</strong> <%= order.year_make_model.upcase %></span></li>
                       <li><span class="fa fa-map-marker m-r-xs"> <STRONG> PROM :</STRONG> <%= order.shipping_from_city.upcase %>,<%= order.shipping_from_province %></span></li>

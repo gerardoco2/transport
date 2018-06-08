@@ -39,7 +39,12 @@
                               <tr>
                                 <td><%= link_to order.reservation, order %></td>
                                 <td><%= link_to order.customer.name, order %></td>
-                                <td><%= link_to order.driver.name, order %></td>
+                                <td><% if order.driver_id  %> 
+                    
+                        <%= link_to Driver.find(order.driver_id).name, driver_path(order.driver_id) %>
+                      <% else %>
+                        <%= "Not assigned yet" %>
+                      <% end %></td>
                                 <td><%= order.pickup_address %></td>
                                 <td><%= order.delivery_address %></td>
                                 <td><%= order.status %></td>

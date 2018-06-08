@@ -17,5 +17,5 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
 //= require rails-ujs
-//= require turbolinks
+
 //= require_tree .
