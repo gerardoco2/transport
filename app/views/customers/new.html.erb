@@ -2,13 +2,11 @@
   <div class="col-lg-8">
     <h2>Add a New Customer</h2> 
     <ol class="breadcrumb">
-      <li>kjsad</li>
-      <li>ada</li>
-      <li>sd</li>
+      <li><%= link_to '<< Back', customers_path %></li>
     </ol>
   </div>
 </div>
 
 <%= render 'form', customer: @customer %>
 
-<%= link_to 'Back', customers_path %>
+
