@@ -133,29 +133,29 @@
                             <p>Hi, <br> There is a new order <span style="font-weight: 700; background-color: yellow;"> FROM <%= order.pickup_address %> TO <%= order.delivery_address %> </span><br> You will be paid : <span style="font-weight: 700; background-color: yellow;"> $ <%= order.driver_pay %>  CAD </span>  <br> If you want to takethis orders pleas Reply <span style="background-color: yellow;">YES</span> to this message or click on the following link to accept it inmediately.
 
                             	<div>
-								<%= form_for order, remote:true do |form| %>
-						        <% if order.errors.any? %>
-						          <div id="error_explanation">
-						            <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+          								<%= form_for order, remote:true do |form| %>
+          						        <% if order.errors.any? %>
+          						          <div id="error_explanation">
+          						            <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-						            <ul>
-						            <% order.errors.full_messages.each do |message| %>
-						              <li><%= message %></li>
-						            <% end %>
-						            </ul>
-						          </div>
-						        <% end %>
+          						            <ul>
+          						            <% order.errors.full_messages.each do |message| %>
+          						              <li><%= message %></li>
+          						            <% end %>
+          						            </ul>
+          						          </div>
+          						        <% end %>
 
-						         <div class="form-group">
-						          <%= form.label :driver_id %>
-						          <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
-						         </div>
-								<%= form.hidden_field :status, :value => "Dispatched" %>
-								
-						 
-						          <%= form.submit "Send dispatch sheet" , :class=>"btn btn-primay" %>
-						        
-						     <% end %>                            		
+          						         <div class="form-group">
+          						          <%= form.label :driver_id %>
+          						          <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
+          						         </div>
+          								<%= form.hidden_field :status, :value => "Dispatched" %>
+          								
+          						 
+          						          <%= form.submit "Send dispatch sheet" , :class=>"btn btn-primay" %>
+          						        
+          						     <% end %>                            		
                             </div>
 						   
                         </div>

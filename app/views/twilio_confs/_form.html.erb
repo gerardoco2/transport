@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+  <div class="col-md-10">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      
+      <div class="ibox-content">
+        <%= form_with(model: twilio_conf, local: true) do |form| %>
+          <% if twilio_conf.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(twilio_conf.errors.count, "error") %> prohibited this twilio_conf from being saved:</h2>
+
+              <ul>
+              <% twilio_conf.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= form.label :acct_id %>
+            <%= form.text_field :acct_id, id: :twilio_conf_acct_id %>
+          </div>
+
+          <div class="field">
+            <%= form.label :auth_token %>
+            <%= form.text_field :auth_token, id: :twilio_conf_auth_token %>
+          </div>
+
+          <div class="field">
+            <%= form.label :phone_number %>
+            <%= form.text_field :phone_number, id: :twilio_conf_phone_number %>
+          </div>
+
+          <div class="field">
+            <%= form.label :status, 'Do you want to send sms to customers when sending a contract?' %>
+            <%= form.check_box :status, id: :twilio_conf_status %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>
+    </div>
+    </div>
+  </div>
+</div>  
+</div>

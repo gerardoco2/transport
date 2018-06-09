@@ -64,21 +64,24 @@
                 </ul>
             </li>
             
-         
-             <li class="">
-                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label" data-i18n="nav.mailbox">Statistics </span>
-                <ul class="nav nav-second-level collapse ">
-                    <li class="">Sells Reports</li>
-                    <li class="">Customers Reports</li>
-                    <li class=""> Reports</li>
+               <li class="<%= is_active_controller('drivers') %>">
+                <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label" data-i18n="nav.graphs">Statistics</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('drivers','in') %>">
+                    
                 </ul>
             </li>
+            
          
+         
+            <li class="<%= is_active_controller('twilio_confs') %>">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label" data-i18n="nav.graphs">Configuration</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('twilio_confs','in') %>">
+                    <li class="<%= is_active_action('show') %>"><%= link_to "Sms", twilio_conf_path(id:1)  %></li>
                     
-            <li>
-                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label" data-i18n="nav.menulevels">Configuration </span><span class="fa arrow"></span></a>
-               
-            </li>
+                    
+                </ul>
+            </li>        
+           
             
         </ul>
 

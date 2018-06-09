@@ -1,0 +1,40 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-8">
+    <h2>Current Twilio's Details</h2> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-10">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      
+      <div class="ibox-content">
+
+		<p>
+		  <strong>Acct:</strong>
+		  <%= @twilio_conf.acct_id %>
+		</p>
+
+		<p>
+		  <strong>Auth token:</strong>
+		  <%= @twilio_conf.auth_token %>
+		</p>
+
+		<p>
+		  <strong>Phone number:</strong>
+		  <%= @twilio_conf.phone_number %>
+		</p>
+
+		<p>
+		  <strong>Active:</strong>
+		  <%= @twilio_conf.status ? 'yes' : 'no' %>
+		</p>
+		<%= link_to 'Edit', edit_twilio_conf_path(@twilio_conf), :class=>'btn btn-default' %> 	
+    </div>
+
+    </div>
+  </div>
+</div>  
+</div>
+
