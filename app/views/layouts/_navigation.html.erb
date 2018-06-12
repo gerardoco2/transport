@@ -33,7 +33,7 @@
                 <a href=""><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Profile</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse ">
                     <li class=""><%= link_to "My Profile" %></li>
-                    <li ><%= link_to "My Orders" %></li>
+                    <li ><%= link_to "My Orders", my_orders_path %></li>
                     
                 </ul>
             </li>
@@ -73,14 +73,20 @@
             
          
          
-            <li class="<%= is_active_controller('twilio_confs') %>">
+
+            <li class="<%= is_active_controller('twilio_confs') || is_active_controller('service_types') %>">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label" data-i18n="nav.graphs">Configuration</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse <%= is_active_controller('twilio_confs','in') %>">
                     <li class="<%= is_active_action('show') %>"><%= link_to "Sms", twilio_conf_path(id:1)  %></li>
-                    
-                    
                 </ul>
-            </li>        
+                <ul class="nav nav-second-level collapse <%= is_active_controller('service_types','in') %>">
+                    <li class="<%= is_active_action('index') %>"><%= link_to "Services", service_types_path  %></li>
+                </ul>
+                <ul class="nav nav-second-level collapse <%= is_active_controller('transport_types','in') %>">
+                    <li class="<%= is_active_action('index') %>"><%= link_to "trsnport", transport_types_path  %></li>
+
+                </ul>
+            </li>       
            
             
         </ul>

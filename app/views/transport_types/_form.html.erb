@@ -1,32 +1,43 @@
-<%= form_with(model: transport_type, local: true) do |form| %>
-  <% if transport_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(transport_type.errors.count, "error") %> prohibited this transport_type from being saved:</h2>
+<div class="container">
+  <div class="row">
+  <div class="col-md-10">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      
+      <div class="ibox-content">
+      <%= form_with(model: transport_type, local: true) do |form| %>
+        <% if transport_type.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(transport_type.errors.count, "error") %> prohibited this transport_type from being saved:</h2>
 
-      <ul>
-      <% transport_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% transport_type.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :transport_type_name, :class=>"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, id: :transport_type_description, :class=>"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :status %>
+          <%= form.text_field :status, id: :transport_type_status, :class=>"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit %>
+        </div>
       <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :transport_type_name %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :transport_type_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :transport_type_status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>  
+</div>

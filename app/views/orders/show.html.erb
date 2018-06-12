@@ -15,8 +15,14 @@
           </p>
 
           <p>
-            <strong>Driver:</strong>
-            <%= @order.driver.name %>
+            <% if @order.driver_id  %> 
+              <strong>Driver:</strong>
+              <%= @order.driver.name %>
+            <% else %>
+              <strong>Driver:</strong>
+              <%= "Not assigned yet" %>
+            <% end %>
+            
           </p>
 
           <p>

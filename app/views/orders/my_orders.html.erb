@@ -1,0 +1,72 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-8">
+    <h2>My Orders</h2> 
+  </div>
+</div>
+
+
+<p>Orders queued </p><hr class="hr-line-solid"> 
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+    <%if @orders.empty? %>
+     <div class="container">
+         <div class="wrapper wrapper-content  animated fadeInRight article">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            
+                            <div class="text-center article-title">
+                            <span class="text-muted"><i class="fa fa-clock-o"></i> <%= Time.now.to_formatted_s(:long) %></span>
+                                <h1>
+                                    You don't have orders assigned yet!
+                                </h1>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>     
+     </div>
+    <% else  %>    
+        
+        <% @orders.each do |order| %>
+        <div class="col-lg-3" id="<%= order.id %>">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right"><%= order.status.upcase %></span>
+                    <h5>Reservation # - <%= link_to order.reservation, order %></h5>
+                </div>
+                <div class="ibox-content">
+                    <h4 class="text-center">Order's Info</h4>
+                     <ul class="list-unstyled m-t-md">
+                    <li><strong> DRIVER: </strong><% if order.driver_id  %> 
+                    
+                        <%= Driver.find(order.driver_id).name.upcase %>
+                      <% else %>
+                        <%= "not assigned yet" %>
+                      <% end %>
+                      <li><strong> CUSTOMER: </strong><%= Customer.find(order.customer_id).name.upcase %></li>
+                      <li><span class="fa fa-mobile"> <strong>VEHICLE:</strong> <%= order.year_make_model.upcase %></span></li>
+                      <li><span class="fa fa-map-marker m-r-xs"> <STRONG> PROM :</STRONG> <%= order.shipping_from_city.upcase %>,<%= order.shipping_from_province %></span></li>
+                      <li><span class="fa fa-map-marker m-r-xs"> <strong>TO :</strong>  <%= order.shipping_to_city.upcase %>,<%= order.shipping_to_province %> </span></li>
+                    </ul>
+                
+                    <div class="row">
+                       
+                       <div class="col-md-12">
+                       	<%= generateButton( order, order.status) %>
+                       </div>               
+                    </div>
+                </div>
+            </div>
+          </div>
+        <% end %>  
+    <% end  %>
+    </div>
+</div> 
+

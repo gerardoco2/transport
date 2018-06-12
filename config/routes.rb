@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   
   get 'on_hold', to: 'orders#on_hold'
   get 'dispatch_room', to: 'orders#dispatch_room'
+  get 'my-orders', to: 'orders#my_orders', as: :my_orders
+  get 'pickup/:id', to: 'orders#pick_up', as: :pickup
+  get 'deliver/:id', to: 'orders#deliver', as: :deliver
+
 
   
   get 'approve/:id', to: 'orders#approve', as: :approve

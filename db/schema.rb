@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608113054) do
+ActiveRecord::Schema.define(version: 20180611060416) do
 
   create_table "cities", force: :cascade do |t|
     t.integer "province_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180608113054) do
     t.string "pickup_contact"
     t.string "delivery_address"
     t.string "delivery_contact"
-    t.string "transit_time"
+    t.integer "transit_time"
     t.decimal "booking_deposit"
     t.decimal "balance_on_delivery"
     t.decimal "grand_total"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20180608113054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.date "pick_up_date"
+    t.date "delivery_date"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["driver_id"], name: "index_orders_on_driver_id"
     t.index ["service_type_id"], name: "index_orders_on_service_type_id"

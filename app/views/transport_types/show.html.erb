@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+  <div class="col-md-10">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      
+      <div class="ibox-content">
+		<p>
+		  <strong>Name:</strong>
+		  <%= @transport_type.name %>
+		</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @transport_type.name %>
-</p>
+		<p>
+		  <strong>Description:</strong>
+		  <%= @transport_type.description %>
+		</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @transport_type.description %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @transport_type.status %>
-</p>
+		<p>
+		  <strong>Status:</strong>
+		  <%= @transport_type.status %>
+		</p>
+      </div>
+    </div>
+  </div>
+</div>  
+</div>
 
 <%= link_to 'Edit', edit_transport_type_path(@transport_type) %> |
 <%= link_to 'Back', transport_types_path %>

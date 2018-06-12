@@ -1,5 +1,4 @@
 
-<p id="notice"><%= notice %></p>
 
 <div class="row">
   <div class="col-lg-4">
@@ -66,37 +65,49 @@
         <div class="col-lg-3">
             <div class="ibox">
                 <div class="ibox-title">
-                    <span class="label label-primary pull-right">NEW</span>
+                    <span class="label label-primary pull-right"><%= order.status %></span>
                     <h5>Reservation # - <%= link_to order.reservation, order %></h5>
                 </div>
                 <div class="ibox-content">
                     <h4>Order's Info</h4>
                      <ul class="list-unstyled m-t-md">
                       <li><strong> Customer Name: </strong><%= Customer.find(order.customer_id).name%></li>
+                      <li><strong> VEHICLE: </strong><%= order.year_make_model%></li>
                       <li><span class="fa fa-mobile"> PHONE: <%= Customer.find(order.customer_id).cell_phone %></span></li>
                       <li><span class="fa fa-map-marker m-r-xs"> PROM : <%= order.shipping_from_city %>,<%= order.shipping_from_province %></span></li>
                       <li><span class="fa fa-map-marker m-r-xs"> TO : <%= order.shipping_to_city %>,<%= order.shipping_to_province %> </span></li>
                     </ul>
                     <div>
                         <span>Status of current Order:</span>
-                        <div class="stat-percent">48%</div>
-                        <div class="progress progress-mini">
-                            <div style="width: 48%;" class="progress-bar"></div>
+                        <div class="stat-percent"><%= order.advance(order.pick_up_date, order.transit_time) %>%</div>
+                        <div class="progress progress-striped active ">
+
+
+                            <div style="width: <%= order.advance(order.pick_up_date, order.transit_time) %>%;" class="progress-bar progress-bar-success"></div>
                         </div>
                     </div>
                     <div class="row  m-t-sm">
+                    
                         <div class="col-sm-4">
-                            <div class="font-bold">PICK UP</div>
-                            12
+                            <% if order.pick_up_date %>
+                            <div class="font-bold label label-plain">PICK UP</div>
+                                <%= order.pick_up_date %>
+                            <% end %>
                         </div>
                         <div class="col-sm-4">
-                            <div class="font-bold">IN TRANSIT</div>
-                            <%= order.transit_time %>
+                        <% if order.pick_up_date %>
+                            <div class="font-bold">DAYS </div>
+                            <%= order.transit_time %> 
+                        <% end %>
                         </div>
+                    
+                    <% if order.delivery_date %>
                         <div class="col-sm-4 text-right">
                             <div class="font-bold">DELIVERED</div>
-                            $<%= order.balance_on_delivery %><i class="fa fa-level-up text-navy"></i>
+                                <%= order.delivery_date %>
+                            <i class="fa fa-level-up text-navy"></i>
                         </div>
+                    <% end %>
                     </div>
                 </div>
             </div>
@@ -129,8 +140,9 @@
                                 <p>  ===============</p>
                                     <span class="dark"> Reservation Number: </span> <%= order.reservation %> <br>
                                     <span class="dark">Customer Name: </span> <%= order.customer.name %> <%= order.customer.lastname %><br>
+                                      <span class="dark">Vehicle: </span><%= order.year_make_model.upcase %> <br>
                                     <span class="dark">Customer's Phone Number:</span><%= order.customer.cell_phone %> <br>
-                                    <span class="dark">Vehicle: </span><%= order.year_make_model %> <br>
+                                  
                                     <span class="dark">Color: </span><%= order.color %> <br>
                                     <span class="dark">Vin: </span><%= order.vin %> <br>
                                     <span class="dark">Service Type:</span> <%= order.service_type.name %> <br>

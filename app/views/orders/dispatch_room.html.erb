@@ -106,7 +106,7 @@
 						          <%= form.label :driver_id %>
 						          <%= collection_select(:order, :driver_id, Driver.all, :id, :name, { :include_blank => true}, {:class=>"form-control"}) %>
 						         </div>
-								<%= form.hidden_field :status, :value => "Dispatched" %>
+								<%= form.hidden_field :status, :value => "Assigned" %>
 								
 						 
 						          <%= form.submit "Dispatch" , :class=>"btn btn-primary" %>

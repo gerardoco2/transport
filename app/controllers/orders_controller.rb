@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :approve, :cancel, :assign]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :approve, :cancel, :assign, :pick_up, :deliver]
   before_action :set_customer, only: [:create, :new, :edit,  :destroy]
 
   # GET /orders
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
             send_sms(@customer.cell_phone, "Hi "+@customer.name+", you just got a contract from Red Foot Haulers, please check your email!")
           end
         OrderMailer.new_contract(@order).deliver_later
-        format.html { redirect_to customer_path(@customer.id), notice: 'Order was successfully created.' }
+        format.html { redirect_to customers_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -74,13 +74,32 @@ class OrdersController < ApplicationController
     end
   end
 
+  def my_orders
+    @orders = Order.where(["driver_id = ? and status= ? or status=?"," 1", "Assigned", "In Transit"] )
+    
+    #@orders = Order.where(driver_id: 1)
+  end
+
+  def pick_up
+    @order.status = "In Transit"
+    @order.pick_up_date = Date.today
+    @order.save
+    #@order.delivery_date =@order.pick_up_date + @order.transit_time
+  end
+
+  def deliver
+    @order.status = "Delivered"
+    @order.delivery_date = Date.today
+    @order.save
+    #@order.delivery_date =@order.pick_up_date + @order.transit_time
+  end
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to customer_path(@customer.id), notice: 'Order was successfully updated.' }
+        format.html { redirect_to customers_path, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
         if format.js 
           puts "envia email"

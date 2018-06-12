@@ -12,7 +12,7 @@ class DriversController < ApplicationController
   def show
     @routes = @driver.routes.all
     
-    @orders = @driver.orders.all.order(updated_at: :asc)
+    @orders = @driver.orders.where.not(status: "Delivered").order(updated_at: :asc)
   end
 
   # GET /drivers/new
